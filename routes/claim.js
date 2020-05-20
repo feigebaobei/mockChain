@@ -59,7 +59,7 @@ router.route('/fingerprint')
     res.status(200).json({
       result: true,
       data: {
-         "id": "a68c5fd6d964575b3d42bf959",
+         "claim_sn": "a68c5fd6d964575b3d42bf959",
          "templateId": "t0001",
          "hashCont": "dad9ae7815efe9800998ecf8427e8d74",
          "expireTime": "1589345252000", // ms
@@ -71,8 +71,8 @@ router.route('/fingerprint')
               },
              "byDid": "did:ttm:u043829681e922731094502ebffdf1f10389c3ad11c8a67847c68f0482e608",
              "endtime": "1588985429123",
-             "status": "submit",
-             "title": "微信"
+             "status": "submit", // submit // cancel
+             "name": "张坦克"
            },
            {
              "sign": {
@@ -81,8 +81,8 @@ router.route('/fingerprint')
               },
              "byDid": "did:ttm:u123429681e922731094502ebffdf1f10389c3ad11c8a67847c68f0482e608",
              "endtime": "1588985429123",
-             "status": "submit",
-             "title": "去付宝"
+             "status": "checked", // checked // cancel
+             "name": "去付宝"
            },
            {
              "sign": {
@@ -91,8 +91,8 @@ router.route('/fingerprint')
               },
              "byDid": "did:ttm:u567829681e922731094502ebffdf1f10389c3ad11c8a67847c68f0482e608",
              "endtime": "1588985429123",
-             "status": "submit",
-             "title": "美团"
+             "status": "checked",
+             "name": "美团"
            }
          ],
          "statusCode": 1 // 0 submit 1 validated 2 cancel
@@ -169,6 +169,31 @@ router.route('/templateList')
   })
   .put(cors.corsWithOptions, (req, res, next) => {
     res.send('put')
+  })
+  .delete(cors.corsWithOptions, (req, res, next) => {
+    res.send('delete')
+  })
+
+router.route('/cancel')
+  .options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200)
+  })
+  .get(cors.corsWithOptions, (req, res, next) =>{
+    res.send('get')
+  })
+  .post(cors.corsWithOptions, (req, res, next) => {
+    res.send('post')
+  })
+  .put(cors.corsWithOptions, (req, res, next) => {
+    // res.send('put')
+    // 解密claim_sn
+    // 判断该did是否是该claim_sn的拥有者
+    // console.log(req.body)
+    res.status(200).json({
+      result: true,
+      message: '',
+      data: {}
+    })
   })
   .delete(cors.corsWithOptions, (req, res, next) => {
     res.send('delete')
