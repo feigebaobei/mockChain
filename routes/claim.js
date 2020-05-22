@@ -199,4 +199,197 @@ router.route('/cancel')
     res.send('delete')
   })
 
+router.route('/temporaryCertifyData')
+  .options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200)
+  })
+  .get(cors.corsWithOptions, (req, res, next) =>{
+    res.status(200).json({
+      result: true,
+      message: '',
+      // 这是的数据应该标明是否哈希过
+      data: {
+        claim_sn: '02b22a5e81e840176d9f381ec',
+        templateId: '002',
+        certifyData: {
+          "name": {
+            "value": "张坦克",
+            "hasHash": false
+          },
+          "identity": {
+            "value": [143, 44, 80, 195, 76, 92, 163, 238, 36, 12, 103, 173, 102, 254, 37, 78, 142, 103, 178, 162, 219, 167, 180, 70, 156, 121, 216, 178, 7, 52, 58, 31],
+            "hasHash": true
+          },
+          "gender": {
+            "value": [128, 243, 244, 200, 35, 236, 75, 94, 98, 206, 76, 13, 166, 144, 106, 10, 163, 252, 188, 100, 113, 238, 42, 188, 21, 160, 73, 129, 94, 213, 59, 133],
+            "hasHash": true
+          },
+          "startYear": {
+            "value": "2007",
+            "hasHash": false
+          },
+          "startMonth": {
+            "value": "09",
+            "hasHash": false
+          },
+          "startDay": {
+            "value": "01",
+            "hasHash": false
+          },
+          "endYear": {
+            "value": "2013",
+            "hasHash": false
+          },
+          "endMonth": {
+            "value": "06",
+            "hasHash": false
+          },
+          "endDay": {
+            "value": "22",
+            "hasHash": false
+          },
+          "school": {
+            "value": "天津大学",
+            "hasHash": false
+          },
+          "honours": {
+            "value": "5",
+            "hasHash": false
+          },
+          "major": {
+            "value": "建筑系",
+            "hasHash": false
+          },
+          "serialNumber": {
+            "value": "abc-1234-123456",
+            "hasHash": false
+          }
+        },
+        expire: '1588985429',
+        purpose: '仅用于展示。'
+      }
+    })
+  })
+  .post(cors.corsWithOptions, (req, res, next) => {
+    // 一个证书只能一个临时数据
+    res.status(200).json({
+      result: true,
+      message: '',
+      data: {
+        temporaryID: '765b7d7a-1b6d-fae1-e928-c3c24a5ad848'
+      }
+    })
+  })
+  .put(cors.corsWithOptions, (req, res, next) => {
+    res.send('put')
+  })
+  .delete(cors.corsWithOptions, (req, res, next) => {
+    res.send('delete')
+  })
+
+router.route('/certifySignUrl')
+  .options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200)
+  })
+  .get(cors.corsWithOptions, (req, res, next) =>{
+    res.status(200).json({
+      result: true,
+      message: '',
+      data: {
+        claim_sn: '02b22a5e81e840176d9f381ec',
+        templateId: '002',
+        certifyData: {
+          "name": {
+            "value": "张坦克",
+            "hasHash": false
+          },
+          "identity": {
+            "value": "513436200009094961",
+            "hasHash": false
+          },
+          "gender": {
+            "value": "女",
+            "hasHash": false
+          },
+          "startYear": {
+            "value": "2007",
+            "hasHash": false
+          },
+          "startMonth": {
+            "value": "09",
+            "hasHash": false
+          },
+          "startDay": {
+            "value": "01",
+            "hasHash": false
+          },
+          "endYear": {
+            "value": "2013",
+            "hasHash": false
+          },
+          "endMonth": {
+            "value": "06",
+            "hasHash": false
+          },
+          "endDay": {
+            "value": "22",
+            "hasHash": false
+          },
+          "school": {
+            "value": "天津大学",
+            "hasHash": false
+          },
+          "honours": {
+            "value": "5",
+            "hasHash": false
+          },
+          "major": {
+            "value": "建筑系",
+            "hasHash": false
+          },
+          "serialNumber": {
+            "value": "abc-1234-123456",
+            "hasHash": false
+          }
+        }
+      }
+    })
+  })
+  .post(cors.corsWithOptions, (req, res, next) => {
+    // res.send('post')
+    // 应该提供一个完整的url。投肯提供。
+    res.status(200).json({
+      result: true,
+      message: '',
+      data: utils.getUuid()
+    })
+  })
+  .put(cors.corsWithOptions, (req, res, next) => {
+    res.send('put')
+  })
+  .delete(cors.corsWithOptions, (req, res, next) => {
+    res.send('delete')
+  })
+
+router.route('/validate')
+  .options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200)
+  })
+  .get(cors.corsWithOptions, (req, res, next) =>{
+    res.send('get')
+  })
+  .post(cors.corsWithOptions, (req, res, next) => {
+    res.status(200).json({
+      result: true,
+      message: '',
+      data: ''
+    })
+  })
+  .put(cors.corsWithOptions, (req, res, next) => {
+    res.send('put')
+  })
+  .delete(cors.corsWithOptions, (req, res, next) => {
+    res.send('delete')
+  })
+
 module.exports = router;
