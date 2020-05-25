@@ -50,6 +50,7 @@ var config = require('../lib/config')
 //     res.send('delete')
 //   })
 
+// 链上的证书指纹
 router.route('/fingerprint')
   .options(cors.corsWithOptions, (req, res) => {
     res.sendStatus(200)
@@ -174,6 +175,7 @@ router.route('/templateList')
     res.send('delete')
   })
 
+// 取消证书
 router.route('/cancel')
   .options(cors.corsWithOptions, (req, res) => {
     res.sendStatus(200)
@@ -199,6 +201,7 @@ router.route('/cancel')
     res.send('delete')
   })
 
+// 证书的临时数据
 router.route('/temporaryCertifyData')
   .options(cors.corsWithOptions, (req, res) => {
     res.sendStatus(200)
@@ -287,11 +290,13 @@ router.route('/temporaryCertifyData')
     res.send('delete')
   })
 
+// 生成签发证书的数据
 router.route('/certifySignUrl')
   .options(cors.corsWithOptions, (req, res) => {
     res.sendStatus(200)
   })
   .get(cors.corsWithOptions, (req, res, next) =>{
+    // req.body.certifySignUuid
     res.status(200).json({
       result: true,
       message: '',
@@ -358,6 +363,9 @@ router.route('/certifySignUrl')
   .post(cors.corsWithOptions, (req, res, next) => {
     // res.send('post')
     // 应该提供一个完整的url。投肯提供。
+    // req.body.claim_sn
+    // req.body.templateId
+    // req.body.certifyData
     res.status(200).json({
       result: true,
       message: '',
@@ -371,6 +379,7 @@ router.route('/certifySignUrl')
     res.send('delete')
   })
 
+// 签发证书
 router.route('/validate')
   .options(cors.corsWithOptions, (req, res) => {
     res.sendStatus(200)
@@ -383,6 +392,37 @@ router.route('/validate')
       result: true,
       message: '',
       data: ''
+    })
+  })
+  .put(cors.corsWithOptions, (req, res, next) => {
+    res.send('put')
+  })
+  .delete(cors.corsWithOptions, (req, res, next) => {
+    res.send('delete')
+  })
+
+// 申请证书
+router.route('/applyCertify')
+  .options(cors.corsWithOptions, (req, res) => {
+    res.sendStatus(200)
+  })
+  .get(cors.corsWithOptions, (req, res, next) =>{
+    res.send('get')
+  })
+  .post(cors.corsWithOptions, (req, res, next) => {
+    // res.send('post')
+    // res.body.templateId
+    // res.body.hashCont
+    // res.body.endTime
+    res.status(200).json({
+      result: true,
+      message: '',
+      data: {
+        claim_sn: '22a5e81e840176d9f381ec6f8',
+        templateId: '002',
+        hashCont: 'b3429a72b515cf6664ab1ea9afac8329eec4056d43b5449c8845a8248b1d3285',
+        statusCode: 0
+      }
     })
   })
   .put(cors.corsWithOptions, (req, res, next) => {
