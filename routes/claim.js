@@ -414,6 +414,7 @@ router.route('/applyCertify')
     // res.body.templateId
     // res.body.hashCont
     // res.body.endTime
+    // res.body.sign
     res.status(200).json({
       result: true,
       message: '',
