@@ -4,52 +4,6 @@ var utils = require('../lib/utils.js')
 var cors = require('./cors')
 var config = require('../lib/config')
 
-// 获取证书详情应该内pvdata提供证书的数据。
-// 根据证书id获取链上的证书详情
-// 该接口的路由改为 /fingerprint
-// router.route('/')
-//   .options(cors.corsWithOptions, (req, res) => {
-//     res.sendStatus(200)
-//   })
-//   .get(cors.corsWithOptions, (req, res, next) =>{
-//     // req.params.claim_sn
-//     res.status(200).json({
-//       result: true,
-//       data: {
-//         title: '毕业证书',
-//         data: {
-//           name: '张坦克',
-//           id: "a68c5fd6d964575b3d42bf959", // claim_sn
-//           userId: '110121199007860374',
-//           gender: '男',
-//           // startTime: '1588985429000',
-//           startYear: '2013',
-//           startMonth: '09',
-//           startDay: '01',
-//           endYear: '2017',
-//           endMonth: '06',
-//           endDay: '22',
-//           school: '天津大学',
-//           honours: 5,
-//           major: '建筑系',
-//           serialNumber: 'abc-1234-12345',
-//         },
-//         expire: '1588985429000', // 过期时间
-//         desc: '学生$name$身份证号$userId$性别$gender$于$startYear$年$startMonth$月到$endYear$年$endMonth$月在$school$学校$honours$年制$major$专业学习。现已修完教学计划规定的全部课程，成绩合格，获得毕业证书。证书编号：$serialNumber$'
-//       },
-//       message: ""
-//     })
-//   })
-//   .post(cors.corsWithOptions, (req, res, next) => {
-//     res.send('post')
-//   })
-//   .put(cors.corsWithOptions, (req, res, next) => {
-//     res.send('put')
-//   })
-//   .delete(cors.corsWithOptions, (req, res, next) => {
-//     res.send('delete')
-//   })
-
 // 链上的证书指纹
 router.route('/fingerprint')
   .options(cors.corsWithOptions, (req, res) => {
